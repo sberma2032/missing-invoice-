@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invoice Account Checker</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Invoice Account Checker</h1>
+            <p>Compare vendor accounts with invoice data to find missing entries</p>
+        </header>
+
+        <main>
+            <div class="upload-section">
+                <div class="file-upload">
+                    <h3>1. Upload Vendor List</h3>
+                    <div class="upload-box" id="vendor-upload">
+                        <img src="upload-icon.png" alt="Upload" class="upload-icon">
+                        <p>Drop Vendor Excel File Here</p>
+                        <p class="small">or</p>
+                        <input type="file" id="vendor-file" accept=".xlsx, .xls">
+                        <label for="vendor-file" class="upload-btn">Select File</label>
+                    </div>
+                    <div class="file-info" id="vendor-info"></div>
+                </div>
+
+                <div class="file-upload">
+                    <h3>2. Upload Invoice Data</h3>
+                    <div class="upload-box" id="invoice-upload">
+                        <img src="upload-icon.png" alt="Upload" class="upload-icon">
+                        <p>Drop Invoice Excel File Here</p>
+                        <p class="small">or</p>
+                        <input type="file" id="invoice-file" accept=".xlsx, .xls">
+                        <label for="invoice-file" class="upload-btn">Select File</label>
+                    </div>
+                    <div class="file-info" id="invoice-info"></div>
+                </div>
+            </div>
+
+            <div class="month-selector">
+                <h3>3. Select Month to Check</h3>
+                <input type="month" id="check-month" required>
+            </div>
+
+            <button id="analyze-btn" class="primary-btn">Analyze Files</button>
+
+            <div id="results" class="results-section hidden">
+                <h2>Results</h2>
+                <div class="summary">
+                    <p>Analysis for: <span id="analysis-month"></span></p>
+                    <p>Total Missing Accounts: <span id="missing-count"></span></p>
+                </div>
+                
+                <div class="table-container">
+                    <table id="missing-accounts">
+                        <thead>
+                            <tr>
+                                <th>Account Number</th>
+                                <th>Vendor Name</th>
+                                <th>Last Transaction</th>
+                            </tr>
+                        </thead>
+                        <tbody id="results-body"></tbody>
+                    </table>
+                </div>
+
+                <button id="export-btn" class="secondary-btn">Export to Excel</button>
+            </div>
+        </main>
+    </div>
+
+    <div id="loading" class="loading hidden">
+        <div class="spinner"></div>
+        <p>Processing Files...</p>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
